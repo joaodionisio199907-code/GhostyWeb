@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostyStudios | Digital Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #00f2ff; /* Cyan eléctrico */
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #ffffff;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Fondo con efecto de malla sutil */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* Navbar Flotante */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 8px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            height: 30px;
+            width: auto;
+            filter: drop-shadow(0 0 5px var(--accent));
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Contenedor del Logo Principal */
+        .hero-logo-container {
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .main-logo {
+            width: 180px; /* Ajusta según prefieras */
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.2));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff 0%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .hero-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-top: 10px;
+        }
+
+        /* Secciones */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 100px 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        /* Grid de Software y Juegos */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-top: 15px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+
+        .btn-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-link:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <img src="logo.png" alt="Ghosty Logo" class="nav-logo">
+    <a href="#proyectos">Desarrollos</a>
+    <a href="#estudio">Estudio</a>
+    <a href="mailto:hola@ghostystudios.com">Contacto</a>
+</nav>
+
+<header>
+    <div class="hero-logo-container">
+        <img src="logo.png" alt="Ghosty Studios Logo" class="main-logo">
+    </div>
+    <h1 class="hero-title">GHOSTY STUDIOS</h1>
+    <p class="hero-subtitle">BEYOND THE CODE</p>
+</header>
+
+<div class="container" id="proyectos">
+    <h2>Software & Games</h2>
+    <div class="grid">
+        <div class="card">
+            <span class="tag">Software / Bot</span>
+            <h3>BitPranks</h3>
+            <p class="description">Elevando la interacción digital a través del humor y la automatización inteligente. La herramienta definitiva para comunidades activas.</p>
+            <a href="https://bpranks.vercel.app/" target="_blank" class="btn-link">Lanzar Aplicación →</a>
+        </div>
+
+        <div class="card">
+            <span class="tag">Juego Indie</span>
+            <h3>Void Runner</h3>
+            <p class="description">Un arcade de alta velocidad con estética cyberpunk desarrollado bajo el sello de GhostyStudios.</p>
+            <a href="#" class="btn-link">Próximamente...</a>
+        </div>
+
+        <div class="card">
+            <span class="tag">Utility</span>
+            <h3>Ghost Engine</h3>
+            <p class="description">Framework interno optimizado para el renderizado de partículas espectrales en tiempo real.</p>
+            <a href="#" class="btn-link">Saber más</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="estudio" style="text-align: center; max-width: 800px;">
+    <h2>El Estudio</h2>
+    <p style="font-size: 1.2rem; color: var(--text-secondary);">En GhostyStudios no solo programamos; diseñamos experiencias que desafían la realidad. Desde bots inteligentes hasta mundos virtuales, nuestro código está diseñado para ser invisible pero impactante.</p>
+</div>
+
+<footer>
+    <img src="logo.png" alt="" style="height: 20px; opacity: 0.3; margin-bottom: 10px;"><br>
+    &copy; 2026 GHOSTYSTUDIOS. CREATED BY VISIONARIES.
+</footer>
+
+</body>
+</html>
