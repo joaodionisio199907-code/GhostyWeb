@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GhostyStudios | Advanced Digital Engineering</title>
-    <link rel="icon" href="https://img.icons8.com/fluency-systems-filled/48/00f2ff/ghost.png" type="image/png">
+    <title>Nitroys Studios | Advanced Digital Engineering</title>
+    <link rel="icon" href="https://img.icons8.com/fluency-systems-filled/48/71c5ee/shield.png" type="image/png">
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;700;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030303;
-            --accent: #00f2ff;
-            --accent-2: #7000ff;
-            --text: #ffffff;
-            --text-dim: #71717a;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.07);
+            /* Paleta extraída del logo: Azules metálicos y grises oscuros */
+            --bg: #0a0c10;
+            --accent: #71c5ee; /* Azul claro del brillo del escudo */
+            --accent-2: #3a5a78; /* Azul acero oscuro */
+            --text: #e2e8f0;
+            --text-dim: #64748b;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(113, 197, 238, 0.15);
+            --metal-gradient: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
@@ -35,14 +37,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
         @keyframes pulse-glow {
-            0%, 100% { opacity: 0.5; filter: drop-shadow(0 0 5px var(--accent)); }
-            50% { opacity: 1; filter: drop-shadow(0 0 20px var(--accent)); }
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(113, 197, 238, 0.4)); }
+            50% { filter: drop-shadow(0 0 20px rgba(113, 197, 238, 0.8)); }
         }
 
         .reveal { animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
@@ -52,8 +49,8 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(112, 0, 255, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 20% 30%, rgba(113, 197, 238, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(58, 90, 120, 0.08) 0%, transparent 40%);
             z-index: -1;
         }
 
@@ -63,7 +60,7 @@
             background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -2;
-            opacity: 0.2;
+            opacity: 0.15;
         }
 
         /* --- NAVIGATION --- */
@@ -78,16 +75,16 @@
         }
 
         .logo-container { display: flex; align-items: center; gap: 12px; }
-        .logo-icon { width: 30px; height: 30px; animation: pulse-glow 3s infinite; }
-        .logo-text { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; background: linear-gradient(90deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-img { width: 35px; height: 35px; object-fit: contain; animation: pulse-glow 3s infinite; }
+        .logo-text { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
 
-        /* --- SEARCH PREVIEW SECTION (GOOGLE SIMULATOR) --- */
+        /* --- SEARCH PREVIEW SECTION --- */
         .search-preview {
-            background: #111;
+            background: #0f172a;
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 25px;
@@ -97,10 +94,10 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .google-url { color: #bdc1c6; font-size: 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-        .google-url img { width: 18px; border-radius: 50%; background: #202124; padding: 2px; }
-        .google-title { color: #8ab4f8; font-size: 20px; text-decoration: none; display: block; margin-bottom: 4px; }
-        .google-desc { color: #bdc1c6; font-size: 14px; line-height: 1.4; }
+        .google-url { color: #94a3b8; font-size: 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .google-url img { width: 18px; height: 18px; border-radius: 4px; }
+        .google-title { color: #71c5ee; font-size: 20px; text-decoration: none; display: block; margin-bottom: 4px; font-weight: 500; }
+        .google-desc { color: #94a3b8; font-size: 14px; line-height: 1.4; }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -109,12 +106,21 @@
             text-align: center; position: relative;
         }
 
+        .main-logo-hero {
+            width: 180px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+        }
+
         .hero-title {
-            font-size: clamp(4rem, 15vw, 10rem);
+            font-size: clamp(3rem, 12vw, 8rem);
             font-weight: 900;
             line-height: 0.8;
             margin-bottom: 20px;
-            letter-spacing: -5px;
+            letter-spacing: -4px;
+            background: var(--metal-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
@@ -142,79 +148,49 @@
             overflow: hidden;
         }
 
-        .member-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(255,255,255,0.04); }
-        .member-card h3 { font-size: 2.5rem; margin-bottom: 5px; }
+        .member-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(113, 197, 238, 0.05); }
+        .member-card h3 { font-size: 2.5rem; margin-bottom: 5px; background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
         .member-alias { color: var(--accent); font-family: 'JetBrains Mono'; font-weight: bold; font-size: 1.1rem; }
         .stack-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
-        .stack-item { background: #111; padding: 4px 12px; border-radius: 5px; font-size: 0.65rem; color: var(--text-dim); border: 1px solid var(--border); }
+        .stack-item { background: #000; padding: 4px 12px; border-radius: 5px; font-size: 0.65rem; color: var(--text-dim); border: 1px solid var(--border); }
 
         /* --- GUI SPECIALIZATION --- */
-        .gui-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
+        .gui-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .gui-card {
             border: 1px solid var(--border);
             padding: 40px;
             background: linear-gradient(145deg, rgba(255,255,255,0.02) 0%, transparent 100%);
-            position: relative;
             transition: 0.4s;
-            overflow: hidden;
+            position: relative;
         }
-
-        .gui-card:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.02); }
-        
-        .gui-card::after {
-            content: "";
-            position: absolute; top: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transform: translateX(-100%); transition: 0.6s;
-        }
-        .gui-card:hover::after { transform: translateX(100%); }
-
-        .gui-card h4 { font-family: 'JetBrains Mono'; margin-bottom: 10px; color: #fff; text-transform: uppercase; }
-        .gui-card p { color: var(--text-dim); font-size: 0.9rem; }
-
-        /* --- PROCESS BLOCK --- */
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .process-step { padding: 30px; border-left: 1px solid var(--accent); transition: 0.3s; }
-        .process-step:hover { background: rgba(0, 242, 255, 0.03); }
-        .process-step span { font-family: 'JetBrains Mono'; color: var(--accent); font-size: 0.8rem; }
-        .process-step h4 { margin: 10px 0; font-size: 1.2rem; }
-        .process-step p { color: var(--text-dim); font-size: 0.9rem; }
+        .gui-card:hover { border-color: var(--accent); background: rgba(113, 197, 238, 0.03); }
 
         /* --- SERVICES / PROJECTS --- */
         .feature-item {
             display: flex; justify-content: space-between; align-items: center;
             padding: 50px 0; border-top: 1px solid var(--border);
-            text-decoration: none; color: white;
-            transition: 0.4s;
+            text-decoration: none; color: white; transition: 0.4s;
         }
-        .feature-item:hover { color: var(--accent); padding-left: 20px; background: rgba(255,255,255,0.01); }
+        .feature-item:hover { color: var(--accent); padding-left: 20px; background: rgba(113, 197, 238, 0.02); }
         .feature-info h3 { font-size: 2rem; }
-        .feature-tags { color: var(--text-dim); font-size: 0.8rem; }
 
         footer {
             padding: 80px 10%;
             display: flex; justify-content: space-between; align-items: center;
-            background: #000;
+            background: #05070a;
             border-top: 1px solid var(--border);
         }
 
         .cta-button {
-            background: #fff; color: #000;
+            background: var(--text); color: #000;
             padding: 20px 40px; border-radius: 100px;
             text-decoration: none; font-weight: 900; font-size: 0.9rem;
-            transition: 0.3s;
-            display: inline-block;
+            transition: 0.3s; display: inline-block;
         }
-        .cta-button:hover { background: var(--accent); transform: scale(1.1); box-shadow: 0 0 30px var(--accent); }
+        .cta-button:hover { background: var(--accent); transform: scale(1.05); box-shadow: 0 0 30px rgba(113, 197, 238, 0.3); }
 
         @media (max-width: 768px) {
-            .team-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 4rem; }
+            .hero-title { font-size: 3.5rem; }
             footer { flex-direction: column; gap: 40px; text-align: center; }
         }
     </style>
@@ -226,110 +202,111 @@
 
     <nav>
         <div class="logo-container">
-            <img src="https://img.icons8.com/fluency-systems-filled/48/00f2ff/ghost.png" class="logo-icon" alt="Ghosty Logo">
-            <div class="logo-text">GHOSTY.STUDIOS</div>
+            <img src="nitroylogo.png" class="logo-img" alt="Nitroys Logo">
+            <div class="logo-text">NITROYS.STUDIOS</div>
         </div>
         <div class="nav-links">
             <a href="#proyectos">Developments</a>
             <a href="#interfaces">GUIs</a>
             <a href="#team">Engineers</a>
-            <a href="mailto:hola@ghostystudios.com">Brief Us</a>
+            <a href="mailto:contact@nitroys.com">Brief Us</a>
         </div>
     </nav>
 
     <header class="hero">
-        <span class="hero-subtitle">Engineering beyond boundaries</span>
-        <h1 class="hero-title">DIGITAL<br>ARTIFACTS</h1>
+        <img src="nitroylogo.png" alt="Nitroys Logo" class="main-logo-hero reveal">
+        <span class="hero-subtitle">High Performance Development</span>
+        <h1 class="hero-title">NITROYS<br>STUDIOS</h1>
         
         <div class="search-preview reveal">
             <div class="google-url">
-                <img src="https://img.icons8.com/fluency-systems-filled/48/00f2ff/ghost.png" alt="favicon">
-                https://ghostystudios.com › labs
+                <img src="nitroylogo.png" alt="favicon">
+                https://nitroys.com › unreal-engine
             </div>
-            <a href="#" class="google-title">GhostyStudios: Advanced Interface & Aerospace Engineering</a>
-            <p class="google-desc">Especialistas en sistemas visuales de alta precisión, GUIs para videojuegos y telemetría espacial. Innovación digital por JD & FUFU.</p>
+            <a href="#" class="google-title">Nitroys Studios: Next-Gen Unreal Engine Interfaces</a>
+            <p class="google-desc">Sistemas visuales de alto rendimiento, GUIs personalizadas y arquitectura de software escalable. Especialistas en Unreal Engine & C++.</p>
         </div>
 
-        <p style="color: var(--text-dim); font-size: 1.1rem; letter-spacing: 1px;">BY JD & FUFU • 2026 EDITION</p>
+        <p style="color: var(--text-dim); font-size: 1.1rem; letter-spacing: 1px; margin-top: 20px;">ENGINEERED FOR THE FUTURE • 2026</p>
     </header>
 
     <section id="team">
-        <span class="label">// THE ARCHITECTS</span>
-        <h2>Mentes detrás del código.</h2>
+        <span class="label">// CORE ARCHITECTS</span>
+        <h2>Ingeniería de vanguardia.</h2>
         <div class="team-grid">
             <div class="member-card">
-                <span class="member-alias">@JD_ENGINEER</span>
+                <span class="member-alias">@NITRO_LEAD</span>
                 <h3>JD</h3>
-                <p style="color: var(--text-dim);">Core Systems Architect. Especializado en la creación de algoritmos de alta eficiencia, seguridad de datos y arquitecturas de servidor de baja latencia.</p>
+                <p style="color: var(--text-dim);">Systems Architect. Especializado en optimización de motores, integración de Unreal Engine y arquitecturas distribuidas de baja latencia.</p>
                 <div class="stack-list">
-                    <span class="stack-item">Rust</span> <span class="stack-item">Next.js</span> <span class="stack-item">PostgreSQL</span> <span class="stack-item">Cybersec</span> <span class="stack-item">Docker</span>
+                    <span class="stack-item">C++</span> <span class="stack-item">Unreal Engine</span> <span class="stack-item">Rust</span> <span class="stack-item">AWS</span> <span class="stack-item">Blueprints</span>
                 </div>
             </div>
             <div class="member-card">
-                <span class="member-alias">@FUFU_DESIGN</span>
+                <span class="member-alias">@NITRO_DESIGN</span>
                 <h3>FUFU</h3>
-                <p style="color: var(--text-dim);">Visual Experience Lead. Fusionando arte computacional con interfaces interactivas. Experto en shaders, movimiento y psicología del usuario.</p>
+                <p style="color: var(--text-dim);">Lead UI/UX Engineer. Experto en interfaces técnicas (FUI), diseño de sistemas visuales y experiencias interactivas inmersivas.</p>
                 <div class="stack-list">
-                    <span class="stack-item">WebGL</span> <span class="stack-item">Figma</span> <span class="stack-item">Three.js</span> <span class="stack-item">Unity Art</span> <span class="stack-item">React Native</span>
+                    <span class="stack-item">UMG</span> <span class="stack-item">Shaders</span> <span class="stack-item">Figma</span> <span class="stack-item">Three.js</span> <span class="stack-item">Motion Design</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="interfaces">
-        <span class="label">// ADVANCED INTERFACES</span>
-        <h2>Sistemas Visuales Críticos.</h2>
+        <span class="label">// SPECIALIZED SYSTEMS</span>
+        <h2>Interfaces Técnicas.</h2>
         <div class="gui-grid">
             <div class="gui-card">
-                <h4>Gaming HUDs</h4>
-                <p>Interfaces reactivas de baja latencia para motores AAA.</p>
+                <h4>AAA Game HUDs</h4>
+                <p>Sistemas de interfaz optimizados para el máximo rendimiento en frames por segundo.</p>
             </div>
-            <div class="gui-card" style="border-color: var(--accent-2);">
-                <h4>Aerospace GUIs</h4>
-                <p>Visualización de telemetría y control de misiones espaciales.</p>
+            <div class="gui-card" style="border-color: var(--accent);">
+                <h4>Unreal Engine Tools</h4>
+                <p>Herramientas personalizadas para editores y pipelines de desarrollo profesional.</p>
             </div>
             <div class="gui-card">
-                <h4>Cyber Dashboards</h4>
-                <p>Paneles de monitorización industrial y seguridad avanzada.</p>
+                <h4>Military-Grade GUIs</h4>
+                <p>Visualización de datos críticos con estética industrial y precisión matemática.</p>
             </div>
         </div>
     </section>
 
     <section id="proyectos">
-        <span class="label">// RECENT DEPLOYMENTS</span>
-        <h2>Productos de Software.</h2>
+        <span class="label">// LATEST DEPLOYMENTS</span>
+        <h2>Portfolio de Software.</h2>
         
-        <a href="https://bitprankerbot.com/" class="feature-item" target="_blank">
+        <a href="#" class="feature-item">
             <div class="feature-info">
-                <h3>BitPranks System</h3>
-                <span class="feature-tags">BOT ARCHITECTURE / SOCIAL AUTOMATION</span>
+                <h3>NitroEngine Core</h3>
+                <span class="feature-tags">BACKEND ARCHITECTURE / PERFORMANCE</span>
             </div>
-            <div class="feature-status">Lanzado ✓</div>
+            <div class="feature-status">Optimized ✓</div>
         </a>
 
-        <a href="https://joaodionisio199907-code.github.io/CU/" class="feature-item" target="_blank">
+        <a href="#" class="feature-item">
             <div class="feature-info">
-                <h3>CubePunk</h3>
-                <span class="feature-tags">ARCADE ENGINE / NEON GEOMETRY</span>
+                <h3>Tactical HUD System</h3>
+                <span class="feature-tags">UNREAL ENGINE / UI KIT</span>
             </div>
-            <div class="feature-status">Lanzado ✓</div>
+            <div class="feature-status">Live ✓</div>
         </a>
 
         <a href="#" class="feature-item">
             <div class="feature-info">
                 <h3>Void Runner Arcade</h3>
-                <span class="feature-tags">GAME DESIGN / CYBERPUNK AESTHETICS</span>
+                <span class="feature-tags">GAME DESIGN / NITROYS ORIGINAL</span>
             </div>
-            <div class="feature-status">En Desarrollo [Phase 2]</div>
+            <div class="feature-status">In Production [Phase 2]</div>
         </a>
     </section>
 
     <footer>
         <div>
-            <div class="logo-text" style="font-size: 2rem;">GHOSTY</div>
-            <p style="color: var(--text-dim); margin-top: 10px;">JD & FUFU © 2026</p>
+            <div class="logo-text" style="font-size: 2rem;">NITROYS</div>
+            <p style="color: var(--text-dim); margin-top: 10px;">NITROYS STUDIOS © 2026</p>
         </div>
-        <a href="mailto:hola@ghostystudios.com" class="cta-button">EMPEZAR UN PROYECTO</a>
+        <a href="mailto:contact@nitroys.com" class="cta-button">INICIAR CONSULTORÍA</a>
     </footer>
 
     <script>
@@ -339,7 +316,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('section, .member-card, .gui-card, .search-preview, .feature-item').forEach(el => {
+        document.querySelectorAll('section, .member-card, .gui-card, .search-preview, .feature-item, .main-logo-hero').forEach(el => {
             el.style.opacity = "0";
             observer.observe(el);
         });
