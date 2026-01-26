@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitroys Studios</title>
+    <title>Nitroys Studios | High Performance</title>
     <link rel="icon" href="nitroylogo.png" type="image/png">
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;700;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta extraída del logo: Azules metálicos y grises oscuros */
             --bg: #0a0c10;
-            --accent: #71c5ee; /* Azul claro del brillo del escudo */
-            --accent-2: #3a5a78; /* Azul acero oscuro */
+            --accent: #71c5ee;
+            --accent-2: #3a5a78;
             --text: #e2e8f0;
             --text-dim: #64748b;
             --glass: rgba(255, 255, 255, 0.03);
@@ -20,8 +19,9 @@
             --metal-gradient: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
-        html { scroll-behavior: smooth; }
+        /* Reset y Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
             font-family: 'Outfit', sans-serif;
@@ -29,284 +29,216 @@
             color: var(--text);
             line-height: 1.5;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- ANIMATIONS --- */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(113, 197, 238, 0.4)); }
-            50% { filter: drop-shadow(0 0 20px rgba(113, 197, 238, 0.8)); }
-        }
-
         .reveal { animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
 
-        /* --- BACKGROUND ELEMENTS --- */
+        /* --- BACKGROUND --- */
         .bg-gradient {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(113, 197, 238, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(58, 90, 120, 0.08) 0%, transparent 40%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(113, 197, 238, 0.05) 0%, transparent 40%);
             z-index: -1;
-        }
-
-        .bg-grid {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            opacity: 0.15;
         }
 
         /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 6%;
+            position: fixed; top: 0; width: 100%;
+            padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             z-index: 9999;
         }
 
-        .logo-container { display: flex; align-items: center; gap: 12px; }
-        .logo-img { width: 35px; height: 35px; object-fit: contain; animation: pulse-glow 3s infinite; }
-        .logo-text { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-text { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.5px; background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
-
-        /* --- SEARCH PREVIEW SECTION --- */
-        .search-preview {
-            background: #0f172a;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
-            max-width: 600px;
-            margin: 40px auto;
-            text-align: left;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .google-url { color: #94a3b8; font-size: 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-        .google-url img { width: 18px; height: 18px; border-radius: 4px; }
-        .google-title { color: #71c5ee; font-size: 20px; text-decoration: none; display: block; margin-bottom: 4px; font-weight: 500; }
-        .google-desc { color: #94a3b8; font-size: 14px; line-height: 1.4; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; position: relative;
+            text-align: center; padding: 100px 20px 60px;
         }
 
-        .main-logo-hero {
-            width: 180px;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
-        }
+        .main-logo-hero { width: 120px; margin-bottom: 20px; }
 
         .hero-title {
-            font-size: clamp(3rem, 12vw, 8rem);
-            font-weight: 900;
-            line-height: 0.8;
-            margin-bottom: 20px;
-            letter-spacing: -4px;
-            background: var(--metal-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 900; line-height: 0.9; margin-bottom: 15px; letter-spacing: -2px;
+            background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .hero-subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            font-size: 0.9rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+        .hero-subtitle { font-family: 'JetBrains Mono'; color: var(--accent); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+
+        /* --- SEARCH PREVIEW (Google style) --- */
+        .search-preview {
+            background: #0f172a; border: 1px solid var(--border); border-radius: 12px;
+            padding: 20px; max-width: 90%; margin: 30px auto; text-align: left;
+        }
+        .google-title { color: var(--accent); font-size: 1.1rem; text-decoration: none; display: block; margin-bottom: 5px; }
+        .google-desc { color: #94a3b8; font-size: 0.85rem; }
+
+        /* --- SECTIONS --- */
+        section { padding: 80px 7%; }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 40px; letter-spacing: -1px; }
+        .label { color: var(--accent); font-family: 'JetBrains Mono'; font-size: 0.7rem; margin-bottom: 15px; display: block; }
+
+        /* --- GRIDS --- */
+        .team-grid, .gui-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
         }
 
-        /* --- SECTION SYSTEM --- */
-        section { padding: 140px 10%; border-bottom: 1px solid var(--border); }
-        .label { color: var(--accent); font-family: 'JetBrains Mono'; font-size: 0.8rem; margin-bottom: 20px; display: block; }
-        h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin-bottom: 60px; letter-spacing: -2px; }
-
-        /* --- CREATORS & STACK --- */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .member-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 50px;
-            border-radius: 40px;
-            position: relative;
-            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            overflow: hidden;
+        .member-card, .gui-card {
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 30px; border-radius: 24px; transition: 0.4s;
         }
 
-        .member-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(113, 197, 238, 0.05); }
-        .member-card h3 { font-size: 2.5rem; margin-bottom: 5px; background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-        .member-alias { color: var(--accent); font-family: 'JetBrains Mono'; font-weight: bold; font-size: 1.1rem; }
-        .stack-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
-        .stack-item { background: #000; padding: 4px 12px; border-radius: 5px; font-size: 0.65rem; color: var(--text-dim); border: 1px solid var(--border); }
+        .member-card h3 { font-size: 1.8rem; margin-bottom: 10px; }
 
-        /* --- GUI SPECIALIZATION --- */
-        .gui-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .gui-card {
-            border: 1px solid var(--border);
-            padding: 40px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.02) 0%, transparent 100%);
-            transition: 0.4s;
-            position: relative;
-        }
-        .gui-card:hover { border-color: var(--accent); background: rgba(113, 197, 238, 0.03); }
+        .stack-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+        .stack-item { background: #000; padding: 4px 10px; border-radius: 4px; font-size: 0.6rem; color: var(--text-dim); border: 1px solid var(--border); }
 
-        /* --- SERVICES / PROJECTS --- */
+        /* --- PORTFOLIO ITEMS --- */
         .feature-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 50px 0; border-top: 1px solid var(--border);
-            text-decoration: none; color: white; transition: 0.4s;
+            display: flex; flex-direction: column; gap: 10px;
+            padding: 30px 0; border-top: 1px solid var(--border);
+            text-decoration: none; color: white;
         }
-        .feature-item:hover { color: var(--accent); padding-left: 20px; background: rgba(113, 197, 238, 0.02); }
-        .feature-info h3 { font-size: 2rem; }
+        .feature-item h3 { font-size: 1.5rem; }
+        .feature-status { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--accent); }
 
+        /* --- FOOTER --- */
         footer {
-            padding: 80px 10%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: #05070a;
-            border-top: 1px solid var(--border);
+            padding: 60px 7%; text-align: center;
+            background: #05070a; border-top: 1px solid var(--border);
+            display: flex; flex-direction: column; gap: 30px;
         }
 
         .cta-button {
             background: var(--text); color: #000;
-            padding: 20px 40px; border-radius: 100px;
-            text-decoration: none; font-weight: 900; font-size: 0.9rem;
-            transition: 0.3s; display: inline-block;
+            padding: 18px 35px; border-radius: 100px;
+            text-decoration: none; font-weight: 900; font-size: 0.8rem;
+            display: inline-block; width: fit-content; margin: 0 auto;
         }
-        .cta-button:hover { background: var(--accent); transform: scale(1.05); box-shadow: 0 0 30px rgba(113, 197, 238, 0.3); }
 
+        /* --- MEDIA QUERIES (TABLETS & PHONES) --- */
         @media (max-width: 768px) {
-            .hero-title { font-size: 3.5rem; }
-            footer { flex-direction: column; gap: 40px; text-align: center; }
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; } /* Ocultar links en móvil para simplificar o usar menú hamburguesa */
+            
+            section { padding: 60px 20px; }
+            
+            .feature-item { flex-direction: column; align-items: flex-start; }
+            
+            .hero-title { letter-spacing: -1px; }
+            
+            .member-card, .gui-card { padding: 25px; }
+        }
+
+        /* Toque táctil */
+        @media (hover: none) {
+            .member-card:active, .gui-card:active {
+                transform: scale(0.98);
+                border-color: var(--accent);
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-gradient"></div>
-    <div class="bg-grid"></div>
 
     <nav>
         <div class="logo-container">
-            <img src="nitroylogo.png" class="logo-img" alt="Nitroys Logo">
             <div class="logo-text">NITROYS.STUDIOS</div>
         </div>
         <div class="nav-links">
-            <a href="#proyectos">Developments</a>
+            <a href="#proyectos">Devs</a>
             <a href="#interfaces">GUIs</a>
-            <a href="#team">Engineers</a>
-            <a href="mailto:contact@nitroys.com">Brief Us</a>
+            <a href="mailto:contact@nitroys.com">Brief</a>
         </div>
     </nav>
 
     <header class="hero">
-        <img src="nitroylogo.png" alt="Nitroys Logo" class="main-logo-hero reveal">
-        <span class="hero-subtitle">High Performance Development</span>
+        <img src="nitroylogo.png" alt="Logo" class="main-logo-hero">
+        <span class="hero-subtitle">High Performance Dev</span>
         <h1 class="hero-title">NITROYS<br>STUDIOS</h1>
         
-        <div class="search-preview reveal">
-            <div class="google-url">
-                <img src="nitroylogo.png" alt="favicon">
-                https://nitroys.com › unreal-engine
-            </div>
-            <a href="#" class="google-title">Nitroys Studios: Next-Gen Unreal Engine Interfaces</a>
-            <p class="google-desc">Sistemas visuales de alto rendimiento, GUIs personalizadas y arquitectura de software escalable. Especialistas en Unreal Engine & C++.</p>
+        <div class="search-preview">
+            <a href="#" class="google-title">Next-Gen Unreal Interfaces</a>
+            <p class="google-desc">Sistemas visuales de alto rendimiento y arquitectura C++ escalable para la industria 2026.</p>
         </div>
-
-        <p style="color: var(--text-dim); font-size: 1.1rem; letter-spacing: 1px; margin-top: 20px;">ENGINEERED FOR THE FUTURE • 2026</p>
     </header>
 
     <section id="team">
         <span class="label">// CORE ARCHITECTS</span>
-        <h2>Ingeniería de vanguardia.</h2>
+        <h2>Ingeniería.</h2>
         <div class="team-grid">
             <div class="member-card">
                 <span class="member-alias">@NITRO_LEAD</span>
                 <h3>JD</h3>
-                <p style="color: var(--text-dim);">Systems Architect. Especializado en optimización de motores, integración de Unreal Engine y arquitecturas distribuidas de baja latencia.</p>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Systems Architect. Optimización de motores y baja latencia.</p>
                 <div class="stack-list">
-                    <span class="stack-item">C++</span> <span class="stack-item">Unreal Engine</span> <span class="stack-item">Rust</span> <span class="stack-item">AWS</span> <span class="stack-item">Blueprints</span>
+                    <span class="stack-item">C++</span> <span class="stack-item">Unreal</span> <span class="stack-item">Rust</span>
                 </div>
             </div>
             <div class="member-card">
                 <span class="member-alias">@NITRO_DESIGN</span>
                 <h3>FUFU</h3>
-                <p style="color: var(--text-dim);">Lead UI/UX Engineer. Experto en interfaces técnicas (FUI), diseño de sistemas visuales y experiencias interactivas inmersivas.</p>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Lead UI/UX Engineer. Experto en interfaces técnicas (FUI).</p>
                 <div class="stack-list">
-                    <span class="stack-item">UMG</span> <span class="stack-item">Shaders</span> <span class="stack-item">Figma</span> <span class="stack-item">Three.js</span> <span class="stack-item">Motion Design</span>
+                    <span class="stack-item">UMG</span> <span class="stack-item">Shaders</span> <span class="stack-item">Figma</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="interfaces">
-        <span class="label">// SPECIALIZED SYSTEMS</span>
-        <h2>Interfaces Técnicas.</h2>
+        <span class="label">// SPECIALIZED</span>
+        <h2>Sistemas.</h2>
         <div class="gui-grid">
             <div class="gui-card">
-                <h4>AAA Game HUDs</h4>
-                <p>Sistemas de interfaz optimizados para el máximo rendimiento en frames por segundo.</p>
-            </div>
-            <div class="gui-card" style="border-color: var(--accent);">
-                <h4>Unreal Engine Tools</h4>
-                <p>Herramientas personalizadas para editores y pipelines de desarrollo profesional.</p>
+                <h4>AAA HUDs</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Optimización extrema de frames.</p>
             </div>
             <div class="gui-card">
-                <h4>Military-Grade GUIs</h4>
-                <p>Visualización de datos críticos con estética industrial y precisión matemática.</p>
+                <h4>UE Tools</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Pipelines de desarrollo profesional.</p>
             </div>
         </div>
     </section>
 
     <section id="proyectos">
-        <span class="label">// LATEST DEPLOYMENTS</span>
-        <h2>Portfolio de Software.</h2>
+        <span class="label">// DEPLOYMENTS</span>
+        <h2>Software.</h2>
         
         <a href="#" class="feature-item">
-            <div class="feature-info">
-                <h3>NitroEngine Core</h3>
-                <span class="feature-tags">BACKEND ARCHITECTURE / PERFORMANCE</span>
-            </div>
-            <div class="feature-status">Optimized ✓</div>
+            <h3>NitroEngine Core</h3>
+            <span class="feature-status">Optimized ✓</span>
         </a>
 
         <a href="#" class="feature-item">
-            <div class="feature-info">
-                <h3>Tactical HUD System</h3>
-                <span class="feature-tags">UNREAL ENGINE / UI KIT</span>
-            </div>
-            <div class="feature-status">Live ✓</div>
-        </a>
-
-        <a href="#" class="feature-item">
-            <div class="feature-info">
-                <h3>Void Runner Arcade</h3>
-                <span class="feature-tags">GAME DESIGN / NITROYS ORIGINAL</span>
-            </div>
-            <div class="feature-status">In Production [Phase 2]</div>
+            <h3>Void Runner</h3>
+            <span class="feature-status">In Production [Phase 2]</span>
         </a>
     </section>
 
     <footer>
         <div>
-            <div class="logo-text" style="font-size: 2rem;">NITROYS</div>
-            <p style="color: var(--text-dim); margin-top: 10px;">NITROYS STUDIOS © 2026</p>
+            <div class="logo-text" style="font-size: 1.5rem;">NITROYS</div>
+            <p style="color: var(--text-dim); font-size: 0.8rem; margin-top: 10px;">STUDIOS © 2026</p>
         </div>
-        <a href="mailto:contact@nitroys.com" class="cta-button">INICIAR CONSULTORÍA</a>
+        <a href="mailto:contact@nitroys.com" class="cta-button">CONSULTORÍA</a>
     </footer>
 
     <script>
@@ -314,9 +246,9 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('reveal');
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.05 });
 
-        document.querySelectorAll('section, .member-card, .gui-card, .search-preview, .feature-item, .main-logo-hero').forEach(el => {
+        document.querySelectorAll('section, .member-card, .gui-card, .feature-item').forEach(el => {
             el.style.opacity = "0";
             observer.observe(el);
         });
@@ -324,4 +256,3 @@
 
 </body>
 </html>
-
